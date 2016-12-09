@@ -1,0 +1,7 @@
+bible.*
+joker.txt
+word_ngram.py
+word_trigram.py
+.idea/
+.DS_Store
+*.pyc
