@@ -4,3 +4,4 @@ word_ngram.py
 .idea/
 .DS_Store
 *.pyc
+*gram.json

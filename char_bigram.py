@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import io
+import io, math, json
 import nltk
 from nltk.util import ngrams
 from nltk.tokenize import RegexpTokenizer
@@ -22,5 +22,10 @@ for word in word_tokens:
 conditional_frequency_distribution = nltk.ConditionalFreqDist(all_char_bigrams)
 conditional_probability_distribution = nltk.ConditionalProbDist(conditional_frequency_distribution, nltk.MLEProbDist)
 
+char_bigram_dict = {}
+
 for bgram in all_char_bigrams:
-    print "{0}: {1}".format(conditional_probability_distribution[bgram[0]].prob(bgram[1]), bgram)
+    char_bigram_dict[str(bgram)] = math.log10(conditional_probability_distribution[bgram[0]].prob(bgram[1]))
+
+with open('charBigram.json', 'w+') as fp:
+    json.dump(char_bigram_dict, fp, sort_keys=True, indent=4)
