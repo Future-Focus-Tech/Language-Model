@@ -8,5 +8,5 @@ class TestWordBigramMethods(unittest.TestCase):
         word_bigram.generate_word_bigram_probability("mypet.txt")
         self.assertTrue(os.path.exists("wordBigram.json"), msg="File not exist.")
 
-if __name__ == '__main__':
-    unittest.main()
+suite = unittest.TestLoader().loadTestsFromTestCase(TestWordBigramMethods)
+unittest.TextTestRunner(verbosity=2).run(suite)
