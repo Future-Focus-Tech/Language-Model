@@ -1,18 +1,12 @@
 # -*- coding: utf-8 -*-
 
-import io, math, json
+import math, json
 import nltk
 from nltk.util import ngrams
-from nltk.tokenize import RegexpTokenizer
-from preprocessor import utf8_to_ascii
+from utilities import get_word_tokens
 
-tokenizer = RegexpTokenizer("[a-zA-Z-']+")
+word_tokens = get_word_tokens("mypet.txt")
 
-with io.open("mypet.txt",'r',encoding='utf8') as utf_file:
-    file_content = utf_file.read()
-
-ascii_content = utf8_to_ascii(file_content)
-word_tokens = tokenizer.tokenize(ascii_content)
 all_char_bigrams = []
 
 for word in word_tokens:

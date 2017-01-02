@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 
 import io, math, json
-import nltk
 from nltk.util import ngrams
 from nltk.tokenize import RegexpTokenizer
-from preprocessor import utf8_to_ascii
+from utilities import utf8_to_ascii
 
 tokenizer = RegexpTokenizer("[a-zA-Z-']+")
 
@@ -24,9 +23,10 @@ print all_char_bigrams
 with open("charBigram.json",mode='r') as json_file:
     trained_result = json.load(json_file)
 
-for char_bigram in all_char_bigrams:
-    for cgram in char_bigram:
-        if str(cgram) in trained_result:
-            print "found: " + str(cgram) + str(math.exp(trained_result[str(cgram)]))
-        else:
-            print "not found: " + str(cgram)
+def isWordExist():
+    for char_bigram in all_char_bigrams:
+        for cgram in char_bigram:
+            if str(cgram) in trained_result:
+                print "found: " + str(cgram) + str(math.exp(trained_result[str(cgram)]))
+            else:
+                print "not found: " + str(cgram)

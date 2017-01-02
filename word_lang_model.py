@@ -4,7 +4,7 @@ import io, json
 import nltk
 from nltk.util import ngrams
 from nltk.tokenize import sent_tokenize
-from preprocessor import utf8_to_ascii
+from utilities import utf8_to_ascii
 
 with io.open("sample.txt",'r',encoding='utf8') as utf_file:
     file_content = utf_file.read()

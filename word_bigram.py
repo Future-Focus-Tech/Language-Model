@@ -1,16 +1,11 @@
 # -*- coding: utf-8 -*-
 
-import io, math, json
+import math, json
 import nltk
 from nltk.util import ngrams
-from nltk.tokenize import sent_tokenize
-from preprocessor import utf8_to_ascii
+from utilities import get_sentence_tokens
 
-with io.open("mypet.txt",'r',encoding='utf8') as utf_file:
-    file_content = utf_file.read()
-
-ascii_content = utf8_to_ascii(file_content)
-sentence_tokenize_list = sent_tokenize(ascii_content)
+sentence_tokenize_list = get_sentence_tokens("mypet.txt")
 
 all_bigrams = []
 
