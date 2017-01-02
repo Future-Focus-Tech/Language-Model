@@ -26,7 +26,7 @@ conditional_probability_distribution = nltk.ConditionalProbDist(conditional_freq
 word_bigram_dict = {}
 
 for bgram in all_bigrams:
-    word_bigram_dict[str(bgram)] = math.log10(conditional_probability_distribution[bgram[0]].prob(bgram[1]))
+    word_bigram_dict[str(bgram)] = math.log(conditional_probability_distribution[bgram[0]].prob(bgram[1]))
 
 with open('wordBigram.json', 'w+') as fp:
     json.dump(word_bigram_dict, fp, sort_keys=True, indent=4)

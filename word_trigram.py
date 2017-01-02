@@ -25,7 +25,7 @@ conditional_probability_distribution = nltk.ConditionalProbDist(conditional_freq
 word_trigram_dict = {}
 
 for trigram in trigrams_as_bigrams:
-    word_trigram_dict[str(trigram)] = math.log10(conditional_probability_distribution[trigram[0]].prob(trigram[1]))
+    word_trigram_dict[str(trigram)] = math.log(conditional_probability_distribution[trigram[0]].prob(trigram[1]))
 
 with open('wordTrigram.json', 'w+') as fp:
     json.dump(word_trigram_dict, fp, sort_keys=True, indent=4)

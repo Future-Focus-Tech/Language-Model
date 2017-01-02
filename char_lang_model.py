@@ -17,16 +17,16 @@ all_char_bigrams = []
 
 for word in word_tokens:
     bigrams = ngrams(word, 2, pad_left=True, pad_right=True, left_pad_symbol='<w>', right_pad_symbol="</w>")
-    all_char_bigrams.extend(bigrams)
+    all_char_bigrams.append(bigrams)
 
 print all_char_bigrams
 
 with open("charBigram.json",mode='r') as json_file:
     trained_result = json.load(json_file)
-print trained_result
 
-for cgram in all_char_bigrams:
-    if str(cgram) in trained_result:
-        print "found: " + str(cgram) + str(trained_result[str(cgram)])
-    else:
-        print "not found: " + str(cgram)
+for char_bigram in all_char_bigrams:
+    for cgram in char_bigram:
+        if str(cgram) in trained_result:
+            print "found: " + str(cgram) + str(math.exp(trained_result[str(cgram)]))
+        else:
+            print "not found: " + str(cgram)
