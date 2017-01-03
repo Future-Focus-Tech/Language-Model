@@ -8,7 +8,7 @@ class TestCharBigramMethods(unittest.TestCase):
         char_bigram.generate_char_bigram_probability("mypet.txt")
         self.assertTrue(os.path.exists("charBigram.json"), msg="File not exist.")
 
-    def test_bigram_log_probability_of_starting_a_word_with_particular_letter(self):
+    def test_bigram_log_probability_of_starting_a_word_with_particular_single_character(self):
         with open("charBigram.json") as data_file:
             data = json.load(data_file)
         self.assertAlmostEqual(data["('<w>', 'A')"], -4.629862798578463, msg=None)
@@ -18,7 +18,7 @@ class TestCharBigramMethods(unittest.TestCase):
         self.assertAlmostEqual(data["('<w>', 'o')"], -2.9716347219749304, msg=None)
 
 
-    def test_bigram_log_probability_of_not_starting_a_word_with_particular_letter(self):
+    def test_word_not_starting_with_particular_single_character(self):
         with open("charBigram.json") as data_file:
             data = json.load(data_file)
         self.assertFalse("('<w>', 'z')" in data, msg="Starting letter exist.")
@@ -27,7 +27,7 @@ class TestCharBigramMethods(unittest.TestCase):
         self.assertFalse("('<w>', 'L')" in data, msg="Starting letter exist.")
 
 
-    def test_bigram_log_probability_for_occurrence_of_two_characters_in_a_word(self):
+    def test_bigram_log_probability_for_occurrence_of_character_pair_in_a_word(self):
         with open("charBigram.json") as data_file:
             data = json.load(data_file)
         self.assertAlmostEqual(data["('r', 'r')"], -3.7256934272366524, msg=None)
@@ -37,7 +37,7 @@ class TestCharBigramMethods(unittest.TestCase):
         self.assertAlmostEqual(data["('a', 'n')"], -1.5702171992808192, msg=None)
 
 
-    def test_bigram_log_probability_for_no_occurrence_of_two_characters_in_a_word(self):
+    def test_no_occurrence_of_given_character_pair_in_a_word(self):
         with open("charBigram.json") as data_file:
             data = json.load(data_file)
         self.assertFalse("('r', 'b')" in data, msg="Character combination exist.")
@@ -46,7 +46,7 @@ class TestCharBigramMethods(unittest.TestCase):
         self.assertFalse("('y', 'p')" in data, msg="Character combination exist.")
         self.assertFalse("('l', 'x')" in data, msg="Character combination exist.")
 
-    def test_bigram_log_probability_of_ending_a_word_with_particular_letter(self):
+    def test_bigram_log_probability_of_ending_a_word_with_particular_single_character(self):
         with open("charBigram.json") as data_file:
             data = json.load(data_file)
         self.assertAlmostEqual(data["('d', '</w>')"], -0.4737843520856416, msg=None)
@@ -55,7 +55,7 @@ class TestCharBigramMethods(unittest.TestCase):
         self.assertAlmostEqual(data["('y', '</w>')"], -0.19671029424605427, msg=None)
         self.assertAlmostEqual(data["('a', '</w>')"], -2.3434070875143007, msg=None)
 
-    def test_bigram_log_probability_of_not_ending_a_word_with_particular_letter(self):
+    def test_word_not_ending_with_particular_single_character(self):
         with open("charBigram.json") as data_file:
             data = json.load(data_file)
         self.assertFalse("('q', '</w>')" in data, msg="Ending letter exist.")
